@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- 🌿 TƯƠI MÁT & LÀNH TÍNH (Màu chủ đạo - Primary) -->
+    <color name="sage_green">#6E8E75</color>      <!-- Xanh lá xô thơm: dịu nhẹ, thiên nhiên, y tế lành tính -->
+    <color name="mint_light">#EAF2EC</color>      <!-- Xanh bạc hà nhạt: dùng làm nền cho các khối tính năng AI -->
+
+    <!-- ✨ SANG TRỌNG & KIÊU SA (Màu nền & Điểm nhấn - Background & Accent) -->
+    <color name="luxury_nude">#FBF7F4</color>     <!-- Nền kem nude: tạo cảm giác cao cấp như spa, thay cho nền trắng tinh -->
+    <color name="gold_accent">#D4AF37</color>     <!-- Vàng champagne: dùng rất ít cho icon vương miện, điểm thưởng -->
+
+    <!-- 📊 CHUYÊN NGHIỆP & RÕ RÀNG (Màu chữ & Đồ thị - Text & Elements) -->
+    <color name="text_charcoal">#2D3436</color>   <!-- Xám than: màu chữ chính, sang trọng và dễ đọc hơn màu đen thuần -->
+    <color name="text_muted">#7F8C8D</color>      <!-- Xám khói: dùng cho chữ phụ, thành phần mỹ phẩm -->
 </resources>
