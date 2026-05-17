@@ -1,7 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.MyPham" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Theme.MyPham" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">#C39B88</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="android:windowBackground">#F9F6F0</item>
+        <item name="colorSurface">#FFFFFF</item>
+
+        <item name="android:statusBarColor">#F9F6F0</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>
