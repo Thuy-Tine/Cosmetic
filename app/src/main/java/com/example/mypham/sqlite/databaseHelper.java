@@ -14,7 +14,7 @@ public class databaseHelper extends SQLiteOpenHelper {
     // ==============================
 
     private static final String DATABASE_NAME = "COSMETIC.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public databaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -338,6 +338,17 @@ public class databaseHelper extends SQLiteOpenHelper {
                         "REFERENCES SanPham(ma_san_pham)" +
                         ")"
         );
+        db.execSQL(
+                "CREATE TABLE GioHang (" +
+                        "ma_gio_hang INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "ma_san_pham INTEGER NOT NULL, " +
+                        "ten_san_pham TEXT NOT NULL, " +
+                        "gia REAL NOT NULL, " +
+                        "duong_dan_anh TEXT, " +
+                        "so_luong INTEGER NOT NULL DEFAULT 1, " +
+                        "is_checked INTEGER DEFAULT 1" + // 1: Đang chọn mua, 0: Bỏ tích
+                        ")"
+        );
     }
 
     @Override
@@ -355,6 +366,7 @@ public class databaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS HoSoKhachHang");
         db.execSQL("DROP TABLE IF EXISTS HoSoQuanTriVien");
         db.execSQL("DROP TABLE IF EXISTS TaiKhoan");
+        db.execSQL("DROP TABLE IF EXISTS GioHang");
 
         onCreate(db);
     }

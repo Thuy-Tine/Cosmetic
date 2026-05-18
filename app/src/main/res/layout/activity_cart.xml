@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9F6F0">
+
+    <LinearLayout
+        android:id="@+id/toolbarCart"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#FFFFFF"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp">
+
+        <ImageButton
+            android:id="@+id/btnBackCart"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="#00000000"
+            android:src="@drawable/ic_back"
+            app:tint="#2F3E46"
+            android:contentDescription="Trở về"/>
+
+        <TextView
+        android:id="@+id/tvCartTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:text="Giỏ hàng (0)"
+        android:textColor="#2F3E46"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvCartItems"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layoutCheckoutBar"
+        android:layout_below="@id/toolbarCart"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:scrollbars="none" />
+
+    <LinearLayout
+        android:id="@+id/layoutCheckoutBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"> <CheckBox
+        android:id="@+id/cbSelectAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tất cả"
+        android:textColor="#2F3E46"
+        app:buttonTint="#C39B88" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="end"
+            android:layout_marginEnd="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng tiền: "
+                    android:textColor="#2F3E46"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvCartTotalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 đ"
+                    android:textColor="#C39B88"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCheckout"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:text="Mua hàng (0)"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:backgroundTint="#C39B88"
+            app:cornerRadius="0dp" />
+    </LinearLayout>
+</RelativeLayout>
