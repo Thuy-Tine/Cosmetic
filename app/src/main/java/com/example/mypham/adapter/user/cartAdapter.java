@@ -1,4 +1,4 @@
-package com.example.mypham.adapter;
+package com.example.mypham.adapter.user;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

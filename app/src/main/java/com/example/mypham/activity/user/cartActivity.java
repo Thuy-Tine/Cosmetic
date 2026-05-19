@@ -1,5 +1,6 @@
-package com.example.mypham.activity;
+package com.example.mypham.activity.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
@@ -8,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.mypham.R;
-import com.example.mypham.adapter.cartAdapter;
+import com.example.mypham.adapter.user.cartAdapter;
 import com.example.mypham.model.cartItem;
 import com.example.mypham.sqlite.DAO.GioHangDAO;
 import com.google.android.material.button.MaterialButton;
@@ -72,13 +73,22 @@ public class cartActivity extends AppCompatActivity {
 
         btnCheckout.setOnClickListener(v -> {
             int selectedCount = 0;
+            double totalMoney = 0;
+
             for (cartItem item : cartList) {
-                if (item.isChecked()) selectedCount++;
+                if (item.isChecked()) {
+                    selectedCount++;
+                    totalMoney += (item.getGia() * item.getSoLuong());
+                }
             }
+
             if (selectedCount > 0) {
-                Toast.makeText(this, "Tiến hành thanh toán cho " + selectedCount + " sản phẩm!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(cartActivity.this, checkoutActivity.class);
+                intent.putExtra("TOTAL_ITEMS", selectedCount);
+                intent.putExtra("TOTAL_PRICE", totalMoney);
+                startActivity(intent);
             } else {
-                Toast.makeText(this, "Vui lòng chọn ít nhất 1 sản phẩm để mua hàng!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Vui lòng chọn ít nhất 1 sản phẩm!", Toast.LENGTH_SHORT).show();
             }
         });
 

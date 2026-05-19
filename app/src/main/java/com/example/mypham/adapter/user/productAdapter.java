@@ -1,4 +1,4 @@
-package com.example.mypham.adapter;
+package com.example.mypham.adapter.user;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -84,5 +84,11 @@ public class productAdapter extends ArrayAdapter<product> {
         }
 
         return row;
+    }
+    // Thêm hàm này để cập nhật danh sách khi tìm kiếm
+    public void updateList(ArrayList<product> newList) {
+        this.dsSP.clear();
+        this.dsSP.addAll(newList);
+        notifyDataSetChanged();
     }
 }

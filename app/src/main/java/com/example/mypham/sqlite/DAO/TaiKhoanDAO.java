@@ -48,29 +48,24 @@ public class TaiKhoanDAO {
     // =========================
     // KIỂM TRA LOGIN
     // =========================
-    public boolean checkLogin(String tenDangNhap,
-                              String matKhau){
-
-        SQLiteDatabase db =
-                dbHelper.getReadableDatabase();
+    public String checkLogin(String tenDangNhap, String matKhau){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String vaiTro = null;
 
         Cursor cursor = db.rawQuery(
-                "SELECT * FROM TaiKhoan " +
-                        "WHERE ten_dang_nhap=? " +
-                        "AND mat_khau_bam=?",
-                new String[]{
-                        tenDangNhap,
-                        matKhau
-                }
+                "SELECT vai_tro FROM TaiKhoan WHERE ten_dang_nhap=? AND mat_khau_bam=?",
+                new String[]{tenDangNhap, matKhau}
         );
 
-        boolean result =
-                cursor.getCount() > 0;
+        if (cursor.moveToFirst()) {
+            // Lấy dữ liệu cột vai_tro (nằm ở vị trí index 0 do câu SELECT)
+            vaiTro = cursor.getString(0);
+        }
 
         cursor.close();
         db.close();
 
-        return result;
+        return vaiTro; // Trả về "ADMIN", "KHACH_HANG" hoặc null
     }
 
     // =========================

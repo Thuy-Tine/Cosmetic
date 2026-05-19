@@ -1,4 +1,4 @@
-package com.example.mypham.activity;
+package com.example.mypham.activity.user;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.example.mypham.activity.admin.AdminDashboardActivity;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +32,6 @@ public class loginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
         AddViews();
         AddEvents();
@@ -51,41 +50,39 @@ public class loginActivity extends AppCompatActivity {
     //----------------------Step 3-----------------------
     private void AddEvents(){
         btnDangNhap.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 String taiKhoan = edtTaiKhoan.getText().toString().trim();
                 String matKhau = edtMatKhau.getText().toString().trim();
 
+                // Lấy vai trò thay vì chỉ lấy true/false
+                String vaiTro = loginDAO.checkLogin(taiKhoan, matKhau);
 
-                if(loginDAO.checkLogin(taiKhoan,matKhau)){
-                    Toast.makeText(loginActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
+                if (vaiTro != null) {
+                    Toast.makeText(loginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+
+                    // LƯU Ý: Phân luồng điều hướng tại đây
+                    if (vaiTro.equals("ADMIN")) {
+                        // Chuyển sang trang Quản trị Admin
+                        // Lưu ý import đúng package của AdminDashboardActivity
+                        Intent intent = new Intent(loginActivity.this, AdminDashboardActivity.class);
+                        startActivity(intent);
+                    } else {
+                        // Chuyển sang trang User
+                        Intent intent = new Intent(loginActivity.this, productActivity.class);
+                        startActivity(intent);
+                    }
                     finish();
-
-                    //Chay qua trang HeThongActivity
-                    Intent intent = new Intent(loginActivity.this, homeActivity.class);
-                    startActivity(intent);
-                }
-                else{
-                    Toast.makeText(loginActivity.this, "Username or password is not right!", Toast.LENGTH_SHORT).show();
-
+                } else {
+                    Toast.makeText(loginActivity.this, "Sai tài khoản hoặc mật khẩu!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-
-
-
-
         txtDangKy.setOnClickListener(v -> {
-
-            Intent intent = new Intent(loginActivity.this,
-                    registerActivity.class);
-
+            Intent intent = new Intent(loginActivity.this, registerActivity.class);
             startActivity(intent);
-
         });
-
     }
     //--------------------------Step 4------------------------
     //Viết hàm lưu trữ thông tin xuống file

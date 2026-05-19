@@ -1,4 +1,4 @@
-package com.example.mypham.activity;
+package com.example.mypham.activity.user;
 
 import android.os.Bundle;
 

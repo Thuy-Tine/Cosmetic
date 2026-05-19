@@ -14,7 +14,7 @@ public class databaseHelper extends SQLiteOpenHelper {
     // ==============================
 
     private static final String DATABASE_NAME = "COSMETIC.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 6;
 
     public databaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -349,6 +349,28 @@ public class databaseHelper extends SQLiteOpenHelper {
                         "is_checked INTEGER DEFAULT 1" + // 1: Đang chọn mua, 0: Bỏ tích
                         ")"
         );
+
+        db.execSQL("CREATE TABLE HoaDon (" +
+                "ma_hoa_don INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "ngay_lap TEXT NOT NULL, " +
+                "tong_tien REAL NOT NULL, " +
+                "phuong_thuc_thanh_toan TEXT NOT NULL, " +
+                "trang_thai INTEGER DEFAULT 0" + // 0: Chờ giao, 1: Đã nhận
+                ")");
+
+
+        db.execSQL("CREATE TABLE ChiTietHoaDon (" +
+                "ma_chi_tiet INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "ma_hoa_don INTEGER NOT NULL, " +
+                "ma_san_pham INTEGER NOT NULL, " +
+                "ten_san_pham TEXT NOT NULL, " +
+                "gia REAL NOT NULL, " +
+                "so_luong INTEGER NOT NULL, " +
+                "duong_dan_anh TEXT, " +
+                "FOREIGN KEY (ma_hoa_don) REFERENCES HoaDon(ma_hoa_don)" +
+                ")");
+
+
     }
 
     @Override
@@ -368,6 +390,8 @@ public class databaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS TaiKhoan");
         db.execSQL("DROP TABLE IF EXISTS GioHang");
 
+        db.execSQL("DROP TABLE IF EXISTS ChiTietHoaDon");
+        db.execSQL("DROP TABLE IF EXISTS HoaDon");
         onCreate(db);
     }
 

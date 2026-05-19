@@ -7,69 +7,74 @@
     android:orientation="vertical"
     android:paddingLeft="40dp"
     android:paddingRight="40dp"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:background="?android:windowBackground"> <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="ĐĂNG KÝ TÀI KHOẢN"
+    android:textSize="25sp"
+    android:textStyle="bold"
+    android:textColor="#228B22"
+    android:layout_gravity="center"
+    android:layout_marginBottom="20dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ĐĂNG KÝ TÀI KHOẢN"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="#E91E63"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"/>
-
-    <!-- Email -->
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.App.TextInputLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:hint="Email">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:textColor="?attr/colorOnSurface"
             android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Tài khoản -->
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.App.TextInputLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:hint="Tên đăng nhập">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextTaiKhoan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tên đăng nhập"/>
+            android:textColor="?attr/colorOnSurface"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Mật khẩu -->
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.App.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:hint="Mật khẩu"
         app:passwordToggleEnabled="true">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextMatKhau"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mật khẩu"
-            android:inputType="textPassword"/>
+            android:textColor="?attr/colorOnSurface"
+            android:inputType="textPassword"
+            android:maxLength="12"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Xác nhận mật khẩu -->
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.App.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Xác nhận mật khẩu"
         app:passwordToggleEnabled="true">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextXacNhanMatKhau"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Xác nhận mật khẩu"
-            android:inputType="textPassword"/>
+            android:textColor="?attr/colorOnSurface"
+            android:inputType="textPassword"
+            android:maxLength="12"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -77,8 +82,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ĐĂNG KÝ"
-        android:backgroundTint="#E91E63"
+        android:backgroundTint="#228B22"
         android:layout_gravity="center"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="20dp"/>
-
 </LinearLayout>

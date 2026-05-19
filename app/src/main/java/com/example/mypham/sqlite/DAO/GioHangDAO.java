@@ -4,8 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
 import com.example.mypham.model.cartItem;
 import com.example.mypham.sqlite.databaseHelper;
+
 import java.util.ArrayList;
 
 public class GioHangDAO {
@@ -15,7 +17,7 @@ public class GioHangDAO {
         dbHelper = new databaseHelper(context);
     }
 
-    // Lấy toàn bộ danh sách món hàng trong giỏ
+    // 1. Lấy toàn bộ danh sách món hàng trong giỏ
     public ArrayList<cartItem> getAllCartItems() {
         ArrayList<cartItem> list = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -39,6 +41,7 @@ public class GioHangDAO {
         return list;
     }
 
+    // 2. Cập nhật số lượng sản phẩm (+ / -)
     public void updateQuantity(int maGioHang, int soLuong) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues v = new ContentValues();
@@ -47,6 +50,7 @@ public class GioHangDAO {
         db.close();
     }
 
+    // 3. Cập nhật trạng thái tick chọn của 1 món hàng
     public void updateCheckStatus(int maGioHang, boolean isChecked) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues v = new ContentValues();
@@ -55,6 +59,7 @@ public class GioHangDAO {
         db.close();
     }
 
+    // 4. Tick chọn tất cả hoặc bỏ tick tất cả
     public void checkAll(boolean isChecked) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues v = new ContentValues();
@@ -63,13 +68,14 @@ public class GioHangDAO {
         db.close();
     }
 
+    // 5. Xóa 1 món hàng khỏi giỏ (Bấm nút thùng rác)
     public void deleteCartItem(int maGioHang) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete("GioHang", "ma_gio_hang = ?", new String[]{String.valueOf(maGioHang)});
         db.close();
     }
 
-    // Thêm sản phẩm vào giỏ hàng
+    // 6. Thêm sản phẩm vào giỏ hàng từ trang danh sách sản phẩm
     public boolean insertToCart(int maSanPham, String tenSP, String gia, String hinhAnh) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -85,5 +91,12 @@ public class GioHangDAO {
         db.close();
 
         return result != -1;
+    }
+
+    // 7. HÀM MỚI: Xóa tất cả các item đã được tick chọn (Gọi sau khi thanh toán thành công)
+    public void deleteCheckedItems() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete("GioHang", "is_checked = 1", null);
+        db.close();
     }
 }

@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,30 +15,64 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPham">
+
+        <!-- ================= ADMIN ================= -->
+
         <activity
-            android:name=".activity.cartActivity"
+            android:name=".activity.admin.AddEditProductActivity"
             android:exported="false" />
+
         <activity
-            android:name=".activity.productActivity"
+            android:name=".activity.admin.AdminProductActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.admin.AdminDashboardActivity"
+            android:exported="false" />
+
+        <!-- ================= USER ================= -->
+
+        <activity
+            android:name=".activity.user.checkoutActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.user.cartActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.user.productActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.user.registerActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.user.homeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.user.MainActivity"
+            android:exported="false" />
+
+        <!-- LOGIN chạy đầu tiên -->
+        <activity
+            android:name=".activity.user.loginActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
         <activity
-            android:name=".activity.registerActivity"
+            android:name=".activity.user.orderHistoryActivity"
             android:exported="false" />
-        <activity
-            android:name=".activity.homeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.loginActivity"
-            android:exported="false" />
+
     </application>
 
 </manifest>
